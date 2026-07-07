@@ -20,4 +20,14 @@ square.addComponent(
 
 engine.scene.add(square);
 
+const box = new GameObject("Box");
+
+box.transform.position.set(900, 500);
+
+box.addComponent(
+    new RectangleRenderer(150, 150, "red")
+);
+
+engine.scene.add(box);
+engine.camera.follow(square);
 engine.start();

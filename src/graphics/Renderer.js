@@ -9,6 +9,8 @@ export default class Renderer {
         this.canvas.width = 1280;
         this.canvas.height = 720;
 
+        this.camera = null;
+
         document.body.appendChild(this.canvas);
 
     }

@@ -17,12 +17,20 @@ export default class RectangleRenderer extends Component {
 
         ctx.fillStyle = this.color;
 
-        ctx.fillRect(
-            transform.position.x,
-            transform.position.y,
-            this.width * transform.scale.x,
-            this.height * transform.scale.y
-        );
+        const camera = renderer.camera;
+
+    const screenX =
+        transform.position.x - camera.position.x;
+
+    const screenY =
+        transform.position.y - camera.position.y;
+
+    ctx.fillRect(
+        screenX,
+        screenY,
+        this.width * transform.scale.x,
+        this.height * transform.scale.y
+    );
 
     }
 
