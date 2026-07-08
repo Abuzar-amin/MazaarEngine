@@ -27,5 +27,61 @@ export default class Renderer {
         );
 
     }
+    drawRectangle(x, y, width, height, color) {
+
+    this.context.fillStyle = color;
+
+    this.context.fillRect(
+        x,
+        y,
+        width,
+        height
+    );
+
+}
+    drawImage(image, x, y, width, height) {
+
+    this.context.drawImage(
+        image,
+        x,
+        y,
+        width,
+        height
+    );
+
+}
+    drawSprite(
+    image,
+
+    sx,
+    sy,
+
+    sw,
+    sh,
+
+    dx,
+    dy,
+
+    dw,
+    dh
+) {
+
+    this.context.drawImage(
+        image,
+
+        sx,
+        sy,
+
+        sw,
+        sh,
+
+        dx,
+        dy,
+
+        dw,
+        dh
+    );
+
+}
 
 }

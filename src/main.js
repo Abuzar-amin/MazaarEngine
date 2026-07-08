@@ -1,33 +1,48 @@
+import Animator from "./components/Animator.js";
 import Engine from "./core/Engine.js";
 import GameObject from "./scene/GameObject.js";
-import RectangleRenderer from "./components/RectangleRenderer.js";
+
 import PlayerController from "./components/PlayerController.js";
+import SpriteRenderer from "./components/SpriteRenderer.js";
 
-const engine = new Engine();
+import AssetManager from "./loaders/AssetManager.js";
+import Rigidbody from "./physics/Rigidbody.js";
 
-const square = new GameObject("Square");
+async function start() {
 
-square.transform.position.x = 300;
-square.transform.position.y = 200;
+    await AssetManager.loadImage(
+        "player",
+        "../assets/images/player.png"
+    );
 
-square.addComponent(
-    new RectangleRenderer(200, 150, "#4CAF50")
-);
+    const engine = new Engine();
 
-square.addComponent(
-    new PlayerController()
-);
+    const player = new GameObject("Player");
 
-engine.scene.add(square);
+    player.transform.position.set(300, 200);
 
-const box = new GameObject("Box");
+    player.addComponent(
+        new SpriteRenderer("player")
+    );
 
-box.transform.position.set(900, 500);
+    player.addComponent(
+        new Rigidbody()
+    );
 
-box.addComponent(
-    new RectangleRenderer(150, 150, "red")
-);
+    player.addComponent(
+        new PlayerController()
+    );
 
-engine.scene.add(box);
-engine.camera.follow(square);
-engine.start();
+    player.addComponent(
+        new Animator(64, 64, 4, 8)
+    );
+
+    engine.scene.add(player);
+
+    engine.camera.follow(player);
+
+    engine.start();
+
+}
+
+start();

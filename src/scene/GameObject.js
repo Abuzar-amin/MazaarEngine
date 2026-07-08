@@ -25,6 +25,20 @@ export default class GameObject {
         return component;
     }
 
+    getComponent(componentType) {
+
+    for (const component of this.components) {
+
+        if (component instanceof componentType) {
+            return component;
+        }
+
+    }
+
+    return null;
+
+    }
+
     update() {
 
         for (const component of this.components) {

@@ -1,6 +1,6 @@
 import Component from "./Component.js";
 import Keyboard from "../input/Keyboard.js";
-import Time from "../core/Time.js";
+import Rigidbody from "../physics/Rigidbody.js";
 
 export default class PlayerController extends Component {
 
@@ -14,22 +14,36 @@ export default class PlayerController extends Component {
 
     update() {
 
-        const position = this.gameObject.transform.position;
+        const rigidbody =
+            this.gameObject.getComponent(Rigidbody);
+
+        if (!rigidbody) return;
+
+        rigidbody.velocity.x = 0;
+        rigidbody.velocity.y = 0;
 
         if (Keyboard.isKeyDown("a")) {
-            position.x -= this.speed * Time.deltaTime;
+
+            rigidbody.velocity.x = -this.speed;
+
         }
 
         if (Keyboard.isKeyDown("d")) {
-            position.x += this.speed * Time.deltaTime;
+
+            rigidbody.velocity.x = this.speed;
+
         }
 
         if (Keyboard.isKeyDown("w")) {
-            position.y -= this.speed * Time.deltaTime;
+
+            rigidbody.velocity.y = -this.speed;
+
         }
 
         if (Keyboard.isKeyDown("s")) {
-            position.y += this.speed * Time.deltaTime;
+
+            rigidbody.velocity.y = this.speed;
+
         }
 
     }
