@@ -1,3 +1,4 @@
+import PhysicsSystem from "../physics/PhysicsSystem.js";
 export default class Scene {
     constructor() {
         this.gameObjects = [];
@@ -14,11 +15,19 @@ export default class Scene {
     }
 
     update() {
+
         for (const object of this.gameObjects) {
+
             if (object.active) {
+
                 object.update();
-            }
+
+         }
+
         }
+
+        PhysicsSystem.update(this);
+
     }
 
     render(renderer) {
