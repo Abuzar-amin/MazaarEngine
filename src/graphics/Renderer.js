@@ -1,7 +1,9 @@
+import RenderQueue from "./RenderQueue.js";
 export default class Renderer {
 
     constructor() {
 
+        this.renderQueue = new RenderQueue();
         this.canvas = document.createElement("canvas");
 
         this.context = this.canvas.getContext("2d");
@@ -15,6 +17,34 @@ export default class Renderer {
 
     }
 
+    flush() {
+
+    for (const command of this.renderQueue.commands) {
+
+        switch (command.type) {
+
+            case "rectangle":
+
+                this.drawRectangle(
+
+                    command.x,
+                    command.y,
+                    command.width,
+                    command.height,
+                    command.color
+
+                );
+
+                break;
+
+        }
+
+    }
+
+    this.renderQueue.clear();
+
+}
+
     render() {
 
         this.context.fillStyle = "#1E1E1E";
@@ -25,6 +55,7 @@ export default class Renderer {
             this.canvas.width,
             this.canvas.height
         );
+        this.flush();
 
     }
     drawRectangle(x, y, width, height, color) {

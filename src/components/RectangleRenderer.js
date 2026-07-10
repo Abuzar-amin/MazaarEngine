@@ -23,13 +23,21 @@ export default class RectangleRenderer extends Component {
         const screenY =
             transform.position.y - camera.position.y;
 
-        renderer.drawRectangle(
-            screenX,
-            screenY,
-            this.width * transform.scale.x,
-            this.height * transform.scale.y,
-            this.color
-        );
+        renderer.renderQueue.submit({
+
+            type: "rectangle",
+
+            x: screenX,
+
+            y: screenY,
+
+            width: this.width * transform.scale.x,
+
+            height: this.height * transform.scale.y,
+
+            color: this.color
+
+        });
 
     }
 
