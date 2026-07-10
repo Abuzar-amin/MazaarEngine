@@ -19,10 +19,8 @@ export default class Scene {
         for (const object of this.gameObjects) {
 
             if (object.active) {
-
                 object.update();
-
-         }
+            }
 
         }
 

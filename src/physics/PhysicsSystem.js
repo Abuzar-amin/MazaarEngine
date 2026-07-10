@@ -1,61 +1,26 @@
-import BoxCollider from "./BoxCollider.js";
 import Rigidbody from "./Rigidbody.js";
+import Time from "../core/Time.js";
 
 export default class PhysicsSystem {
 
     static update(scene) {
 
-        const objects = scene.gameObjects;
+        for (const object of scene.gameObjects) {
 
-        for (let i = 0; i < objects.length; i++) {
+            const rigidbody = object.getComponent(Rigidbody);
 
-            const objectA = objects[i];
+            if (!rigidbody) continue;
 
-            const colliderA =
-                objectA.getComponent(BoxCollider);
+            rigidbody.velocity.y +=
+                rigidbody.gravity * Time.deltaTime;
 
-            if (!colliderA) continue;
+            object.transform.position.x +=
+                rigidbody.velocity.x * Time.deltaTime;
 
-            for (let j = i + 1; j < objects.length; j++) {
-
-                const objectB = objects[j];
-
-                const colliderB =
-                    objectB.getComponent(BoxCollider);
-
-                if (!colliderB) continue;
-
-                if (this.intersects(colliderA, colliderB)) {
-
-                    const bodyA =
-                        objectA.getComponent(Rigidbody);
-
-                    if (bodyA) {
-
-                        bodyA.velocity.x = 0;
-                        bodyA.velocity.y = 0;
-
-                    }
-
-                }
-
-            }
+            object.transform.position.y +=
+                rigidbody.velocity.y * Time.deltaTime;
 
         }
-
-    }
-
-    static intersects(a, b) {
-
-        const A = a.getBounds();
-        const B = b.getBounds();
-
-        return (
-            A.left < B.right &&
-            A.right > B.left &&
-            A.top < B.bottom &&
-            A.bottom > B.top
-        );
 
     }
 

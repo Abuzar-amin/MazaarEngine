@@ -1,5 +1,5 @@
 import Component from "./Component.js";
-import AssetManager from "../loaders/AssetManager.js";
+import AssetManager from "../../assets/AssetManager.js";
 
 export default class SpriteRenderer extends Component {
 
