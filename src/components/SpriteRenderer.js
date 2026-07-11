@@ -1,6 +1,5 @@
 import Component from "./Component.js";
 import AssetManager from "../../assets/AssetManager.js";
-
 export default class SpriteRenderer extends Component {
 
     constructor(imageName) {
@@ -17,39 +16,38 @@ export default class SpriteRenderer extends Component {
 
     }
 
-    render(renderer) {
+render(renderer) {
 
-        const image =
-            AssetManager.getImage(this.imageName);
+    const image = AssetManager.getImage(this.imageName);
 
-        if (!image) return;
+    if (!image) return;
 
-        const transform = this.gameObject.transform;
-        const camera = renderer.camera;
+    const transform = this.gameObject.transform;
+    const camera = renderer.camera;
 
-        const screenX =
-            transform.position.x - camera.position.x;
+    const screenX = transform.position.x - camera.position.x;
+    const screenY = transform.position.y - camera.position.y;
 
-        const screenY =
-            transform.position.y - camera.position.y;
+    renderer.renderQueue.submit({
 
-        renderer.drawSprite(
-            image,
+        type: "sprite",
 
-            this.sourceX,
-            this.sourceY,
+        image: image,
 
-            this.sourceWidth,
-            this.sourceHeight,
+        sx: this.sourceX,
+        sy: this.sourceY,
 
-            screenX,
-            screenY,
+        sw: this.sourceWidth,
+        sh: this.sourceHeight,
 
-            this.sourceWidth * transform.scale.x,
-            this.sourceHeight * transform.scale.y
+        dx: screenX,
+        dy: screenY,
 
-        );
+        dw: this.sourceWidth * transform.scale.x,
+        dh: this.sourceHeight * transform.scale.y
 
-    }
+    });
+
+}
 
 }

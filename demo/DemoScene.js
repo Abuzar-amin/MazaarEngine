@@ -1,25 +1,16 @@
-import GameObject from "../src/scene/GameObject.js";
-
-import SpriteRenderer from "../src/components/SpriteRenderer.js";
-import PlayerController from "../src/components/PlayerController.js";
-import Rigidbody from "../src/physics/Rigidbody.js";
-import BoxCollider from "../src/physics/BoxCollider.js";
-import Animator from "../src/components/Animator.js";
+import PlayerPrefab from "../src/prefabs/PlayerPrefab.js";
+import WallPrefab from "../src/prefabs/WallPrefab.js";
 
 export default function createDemoScene(engine) {
 
-    const player = new GameObject("Player");
-
-    player.transform.position.set(300, 200);
-
-    player.addComponent(new SpriteRenderer("player"));
-    player.addComponent(new Rigidbody());
-    player.addComponent(new BoxCollider(64, 64));
-    player.addComponent(new PlayerController());
-    player.addComponent(new Animator(64, 64, 4, 8));
+    const player = PlayerPrefab.create(300, 200);
 
     engine.scene.add(player);
 
     engine.camera.follow(player);
+
+    engine.scene.add(
+        WallPrefab.create(700, 200)
+    );
 
 }

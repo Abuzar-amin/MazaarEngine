@@ -1,6 +1,5 @@
 import Engine from "./core/Engine.js";
-import AssetManager from "./assets/AssetManager.js";
-
+import AssetManager from "../assets/AssetManager.js";
 import createDemoScene from "../demo/DemoScene.js";
 
 async function start() {

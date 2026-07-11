@@ -17,7 +17,7 @@ export default class Renderer {
 
     }
 
-    flush() {
+flush() {
 
     for (const command of this.renderQueue.commands) {
 
@@ -26,13 +26,27 @@ export default class Renderer {
             case "rectangle":
 
                 this.drawRectangle(
-
                     command.x,
                     command.y,
                     command.width,
                     command.height,
                     command.color
+                );
 
+                break;
+
+            case "sprite":
+
+                this.context.drawImage(
+                    command.image,
+                    command.sx,
+                    command.sy,
+                    command.sw,
+                    command.sh,
+                    command.dx,
+                    command.dy,
+                    command.dw,
+                    command.dh
                 );
 
                 break;
