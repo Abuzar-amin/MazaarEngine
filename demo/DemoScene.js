@@ -1,16 +1,32 @@
-import PlayerPrefab from "../src/prefabs/PlayerPrefab.js";
-import WallPrefab from "../src/prefabs/WallPrefab.js";
-
+import PrefabManager from "../src/prefabs/PrefabManager.js";
+import World from "../src/world/World.js";
 export default function createDemoScene(engine) {
 
-    const player = PlayerPrefab.create(300, 200);
+    engine.scene.world = new World(
+        20,
+        15,
+        64
+    );
+
+    const player =
+        PrefabManager.create(
+            "player",
+            300,
+            200
+        );
 
     engine.scene.add(player);
 
     engine.camera.follow(player);
 
     engine.scene.add(
-        WallPrefab.create(700, 200)
+
+        PrefabManager.create(
+            "wall",
+            700,
+            200
+        )
+
     );
 
 }

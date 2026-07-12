@@ -1,7 +1,9 @@
+import World from "../world/World.js";
 import PhysicsSystem from "../physics/PhysicsSystem.js";
 export default class Scene {
     constructor() {
         this.gameObjects = [];
+        this.world = null;
     }
 
     add(gameObject) {
@@ -29,10 +31,22 @@ export default class Scene {
     }
 
     render(renderer) {
-        for (const object of this.gameObjects) {
-            if (object.visible) {
-                object.render(renderer);
-            }
+
+        if (this.world) {
+
+            this.world.render(renderer);
+
         }
+
+        for (const object of this.gameObjects) {
+
+            if (object.visible) {
+
+                object.render(renderer);
+
+            }
+
+        }
+
     }
 }

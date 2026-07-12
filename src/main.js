@@ -5,6 +5,11 @@ import createDemoScene from "../demo/DemoScene.js";
 async function start() {
 
     await AssetManager.loadImage(
+    "grass",
+    "../assets/images/grass.png"
+    );
+
+    await AssetManager.loadImage(
         "player",
         "../assets/images/player.png"
     );

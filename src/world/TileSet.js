@@ -8,7 +8,9 @@ export default class TileSet {
 
     add(tile) {
 
-        this.tiles.set(tile.id, tile);
+    this.tiles.set(tile.id, tile);
+
+    return this;
 
     }
 
