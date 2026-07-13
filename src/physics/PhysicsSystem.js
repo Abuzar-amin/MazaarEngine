@@ -14,11 +14,75 @@ export default class PhysicsSystem {
             rigidbody.velocity.y +=
                 rigidbody.gravity * Time.deltaTime;
 
-            object.transform.position.x +=
+            // ==========================
+            // X Movement
+            // ==========================
+
+            const nextX =
+                object.transform.position.x +
                 rigidbody.velocity.x * Time.deltaTime;
 
-            object.transform.position.y +=
+            let xCheck;
+
+            if (rigidbody.velocity.x > 0) {
+
+                // Moving right
+                xCheck = nextX + rigidbody.width;
+
+            } else {
+
+                // Moving left
+                xCheck = nextX;
+
+            }
+
+            const yCenter =
+                object.transform.position.y +
+                rigidbody.height / 2;
+
+            if (
+                !scene.world ||
+                !scene.world.isSolidAt(xCheck, yCenter)
+            ) {
+
+                object.transform.position.x = nextX;
+
+            }
+
+            // ==========================
+            // Y Movement
+            // ==========================
+
+            const nextY =
+                object.transform.position.y +
                 rigidbody.velocity.y * Time.deltaTime;
+
+            let yCheck;
+
+            if (rigidbody.velocity.y > 0) {
+
+                // Moving down
+                yCheck = nextY + rigidbody.height;
+
+            } else {
+
+                // Moving up
+                yCheck = nextY;
+
+            }
+
+            const xCenter =
+                object.transform.position.x +
+                rigidbody.width / 2;
+
+            if (
+                !scene.world ||
+                !scene.world.isSolidAt(xCenter, yCheck)
+            ) {
+
+                object.transform.position.y = nextY;
+
+            }
 
         }
 

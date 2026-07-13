@@ -20,12 +20,12 @@ export default class PlayerPrefab {
         );
 
         player.addComponent(
-            new Rigidbody()
+            new Rigidbody(64, 64)
         );
 
-        player.addComponent(
+       /* player.addComponent(
             new BoxCollider(64, 64)
-        );
+        );*/
 
         player.addComponent(
             new PlayerController()

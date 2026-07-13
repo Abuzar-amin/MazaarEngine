@@ -14,11 +14,55 @@ export default class World {
 
         // Register tiles
         this.tileSet.add(
-            new Tile(0, "grass")
+            new Tile(0, "grass", false)
+        );
+
+        this.tileSet.add(
+            new Tile(1, "stone", true)
         );
 
         // Fill the map with grass
         this.tileMap.fill(0);
+
+        // Top wall
+for (let x = 0; x < this.tileMap.width; x++) {
+
+    this.tileMap.setTile(x, 0, 1);
+
+}
+
+// Bottom wall
+for (let x = 0; x < this.tileMap.width; x++) {
+
+    this.tileMap.setTile(
+        x,
+        this.tileMap.height - 1,
+        1
+    );
+
+}
+
+// Left wall
+for (let y = 0; y < this.tileMap.height; y++) {
+
+    this.tileMap.setTile(
+        0,
+        y,
+        1
+    );
+
+}
+
+// Right wall
+for (let y = 0; y < this.tileMap.height; y++) {
+
+    this.tileMap.setTile(
+        this.tileMap.width - 1,
+        y,
+        1
+    );
+
+} 
 
     }
 
@@ -65,5 +109,20 @@ export default class World {
         });
 
     }
+
+    isSolidAt(worldX, worldY) {
+
+    const tile = this.tileMap.worldToTile(
+        worldX,
+        worldY
+    );
+
+    return this.tileMap.isSolid(
+        tile.x,
+        tile.y,
+        this.tileSet
+    );
+
+}
 
 }

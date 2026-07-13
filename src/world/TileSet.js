@@ -20,4 +20,14 @@ export default class TileSet {
 
     }
 
+    isSolid(id) {
+
+    const tile = this.tiles.get(id);
+
+    if (!tile) return false;
+
+    return tile.solid;
+
+    }
+
 }

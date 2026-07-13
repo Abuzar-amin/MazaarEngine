@@ -14,6 +14,11 @@ async function start() {
         "../assets/images/player.png"
     );
 
+    await AssetManager.loadImage(
+        "stone",
+        "../assets/images/stone.png"
+    );
+
     const engine = new Engine();
 
     createDemoScene(engine);

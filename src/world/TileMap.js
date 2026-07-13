@@ -68,4 +68,32 @@ forEach(callback) {
 
 }
 
+    worldToTile(x, y) {
+
+    return {
+
+        x: Math.floor(x / this.tileSize),
+
+        y: Math.floor(y / this.tileSize)
+
+    };
+
+}
+    isSolid(x, y, tileSet) {
+
+    if (
+        x < 0 ||
+        y < 0 ||
+        x >= this.width ||
+        y >= this.height
+    ) {
+        return true;
+    }
+
+    return tileSet.isSolid(
+        this.getTile(x, y)
+    );
+
+}
+
 }
