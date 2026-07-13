@@ -1,6 +1,7 @@
 import PrefabManager from "../src/prefabs/PrefabManager.js";
 import World from "../src/world/World.js";
-export default function createDemoScene(engine) {
+import WorldLoader from "../src/world/WorldLoader.js";
+export default async function createDemoScene(engine) {
 
     engine.scene.world = new World(
         20,
