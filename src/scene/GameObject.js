@@ -38,6 +38,13 @@ export default class GameObject {
     return null;
 
     }
+    removeComponent(componentType) {
+
+    this.components = this.components.filter(
+        component => !(component instanceof componentType)
+    );
+
+}
 
     update() {
 

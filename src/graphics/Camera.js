@@ -2,9 +2,12 @@ import Vector2 from "../math/Vector2.js";
 
 export default class Camera {
 
-    constructor() {
+    constructor(width = 1280, height = 720) {
 
         this.position = new Vector2();
+
+        this.width = width;
+        this.height = height;
 
         this.zoom = 1;
 
@@ -20,20 +23,22 @@ export default class Camera {
 
     update() {
 
-    if (!this.target) return;
+        if (!this.target) return;
 
-    const targetX =
-        this.target.transform.position.x - 640;
+        const targetX =
+            this.target.transform.position.x -
+            this.width / 2;
 
-    const targetY =
-        this.target.transform.position.y - 360;
+        const targetY =
+            this.target.transform.position.y -
+            this.height / 2;
 
-    this.position.x +=
-        (targetX - this.position.x) * 0.1;
+        this.position.x +=
+            (targetX - this.position.x) * 0.1;
 
-    this.position.y +=
-        (targetY - this.position.y) * 0.1;
+        this.position.y +=
+            (targetY - this.position.y) * 0.1;
 
-}
+    }
 
 }

@@ -46,6 +46,12 @@ export default class PlayerController extends Component {
 
         }
 
+        if (Keyboard.isKeyDown(" ")) {
+
+    console.log("Attack");
+
+}
+
     }
 
 }
