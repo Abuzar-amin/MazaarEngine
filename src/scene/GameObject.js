@@ -46,6 +46,12 @@ export default class GameObject {
 
 }
 
+    hasComponent(componentType) {
+
+    return this.getComponent(componentType) !== null;
+
+}
+
     update() {
 
         for (const component of this.components) {

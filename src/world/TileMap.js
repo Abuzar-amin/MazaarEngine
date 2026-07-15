@@ -1,3 +1,4 @@
+import Layer from "./Layer.js";
 export default class TileMap {
 
     constructor(width, height, tileSize) {
@@ -7,6 +8,16 @@ export default class TileMap {
         this.height = height;
 
         this.tileSize = tileSize;
+
+        this.layers = [];
+
+        this.layers.push(
+            new Layer(
+                "Ground",
+                width,
+                height
+            )
+        );
 
         this.tiles = [];
 
@@ -21,6 +32,7 @@ export default class TileMap {
             }
 
         }
+        
 
     }
 

@@ -1,7 +1,7 @@
 import Component from "./Component.js";
 import Keyboard from "../input/Keyboard.js";
 import Rigidbody from "../physics/Rigidbody.js";
-
+import CombatSystem from "../systems/CombatSystem.js";
 export default class PlayerController extends Component {
 
     constructor(speed = 250) {
@@ -9,6 +9,8 @@ export default class PlayerController extends Component {
         super();
 
         this.speed = speed;
+
+        this.attackPressed = false;
 
     }
 
@@ -46,11 +48,24 @@ export default class PlayerController extends Component {
 
         }
 
-        if (Keyboard.isKeyDown(" ")) {
+    if (Keyboard.isKeyDown(" ")) {
 
-    console.log("Attack");
+        if (!this.attackPressed) {
 
-}
+            CombatSystem.attack(
+                this.gameObject,
+                this.gameObject.scene
+            );
+
+            this.attackPressed = true;
+
+        }
+
+    } else {
+
+        this.attackPressed = false;
+
+    }
 
     }
 

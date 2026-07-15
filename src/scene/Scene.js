@@ -7,7 +7,11 @@ export default class Scene {
     }
 
     add(gameObject) {
+
+        gameObject.scene = this;
+
         this.gameObjects.push(gameObject);
+
     }
 
     remove(gameObject) {

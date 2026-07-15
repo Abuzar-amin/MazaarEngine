@@ -18,6 +18,14 @@ export default class HealthComponent extends Component {
             this.currentHealth - amount
         );
 
+        if (this.isDead()) {
+
+            this.gameObject.scene.remove(
+                this.gameObject
+            );
+
+        }
+
     }
 
     heal(amount) {
