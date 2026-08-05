@@ -3,12 +3,16 @@ import HealthComponent from "../components/HealthComponent.js";
 
 export default class CombatSystem {
 
-    static attack(attacker, scene) {
-
+    static attack(attacker) {
         const attack =
             attacker.getComponent(AttackComponent);
 
         if (!attack) return;
+
+        const scene = attacker.scene;
+
+        let closestEnemy = null;
+        let closestDistance = Infinity;
 
         for (const object of scene.gameObjects) {
 
@@ -30,19 +34,28 @@ export default class CombatSystem {
             const distance =
                 Math.sqrt(dx * dx + dy * dy);
 
-            if (distance <= attack.range) {
+            if (
+                distance < closestDistance &&
+                distance <= attack.range
+            ) {
 
-                health.damage(attack.damage);
-
-                console.log(
-                    `${object.name} HP: ${health.currentHealth}`
-                );
-
-                break;
+                closestDistance = distance;
+                closestEnemy = object;
 
             }
 
         }
+
+        if (!closestEnemy) return;
+
+        const health =
+            closestEnemy.getComponent(HealthComponent);
+
+        health.damage(attack.damage);
+
+        console.log(
+            `${closestEnemy.name}: ${health.currentHealth}/${health.maxHealth}`
+        );
 
     }
 

@@ -53,19 +53,21 @@ export default class PlayerController extends Component {
         if (!this.attackPressed) {
 
             CombatSystem.attack(
-                this.gameObject,
-                this.gameObject.scene
+                this.gameObject
             );
 
             this.attackPressed = true;
 
         }
+        
 
     } else {
 
         this.attackPressed = false;
 
     }
+
+    
 
     }
 
