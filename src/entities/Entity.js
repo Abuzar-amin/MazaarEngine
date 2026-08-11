@@ -6,6 +6,8 @@ export default class Entity extends GameObject {
 
         super(name);
 
+        this.faction = "neutral";
+
     }
 
 }

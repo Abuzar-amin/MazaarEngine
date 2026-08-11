@@ -5,9 +5,22 @@ export default class CombatSystem {
 
     static attack(attacker) {
         const attack =
-            attacker.getComponent(AttackComponent);
+        attacker.getComponent(AttackComponent);
+        console.log(
+            attacker.name,
+            attacker.faction,
+            attacker.getComponent(AttackComponent)
+        );
 
         if (!attack) return;
+
+        if (!attack.canAttack()) {
+
+            return;
+
+        }
+
+        attack.resetCooldown();
 
         const scene = attacker.scene;
 
@@ -16,7 +29,14 @@ export default class CombatSystem {
 
         for (const object of scene.gameObjects) {
 
-            if (object === attacker) continue;
+            if (object === attacker) 
+                continue;
+
+            if (object.faction === attacker.faction) {
+
+                continue;
+
+            }
 
             const health =
                 object.getComponent(HealthComponent);

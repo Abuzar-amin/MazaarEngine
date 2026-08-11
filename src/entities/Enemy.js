@@ -6,6 +6,8 @@ export default class Enemy extends Entity {
 
         super(name);
 
+        this.faction = "enemy";
+
     }
 
 }

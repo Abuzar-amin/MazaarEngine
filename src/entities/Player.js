@@ -6,6 +6,8 @@ export default class Player extends Entity {
 
         super("Player");
 
+        this.faction = "player";
+
     }
 
 }

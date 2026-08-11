@@ -4,6 +4,7 @@ export default class Scene {
     constructor() {
         this.gameObjects = [];
         this.world = null;
+        this.player = null;
     }
 
     add(gameObject) {
@@ -11,6 +12,12 @@ export default class Scene {
         gameObject.scene = this;
 
         this.gameObjects.push(gameObject);
+
+        if (gameObject.name === "Player") {
+
+            this.player = gameObject;
+
+        }
 
     }
 
