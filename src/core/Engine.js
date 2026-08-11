@@ -14,6 +14,7 @@ export default class Engine {
         this.gameLoop = new GameLoop(this);
         this.scene = new Scene();
         this.scene.engine =  this;
+        this.sceneFactory = null;
 
         Keyboard.initialize();
 
@@ -40,6 +41,17 @@ export default class Engine {
         this.camera.update();
 
         this.scene.update();
+
+    }
+    async restart() {
+
+        this.gameOver = false;
+
+        this.scene = new Scene();
+
+        this.scene.engine = this;
+
+        await this.sceneFactory(this);
 
     }
 

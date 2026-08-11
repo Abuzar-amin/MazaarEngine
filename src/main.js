@@ -20,8 +20,11 @@ async function start() {
     );
 
     const engine = new Engine();
+    window.engine = engine;
+    engine.sceneFactory = createDemoScene;
+    await engine.sceneFactory(engine);
+    //await createDemoScene(engine);
 
-    await createDemoScene(engine);
 
     engine.start();
 
