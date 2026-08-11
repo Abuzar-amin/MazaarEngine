@@ -18,13 +18,23 @@ export default class HealthComponent extends Component {
             this.currentHealth - amount
         );
 
-        if (this.isDead()) {
+    if (this.isDead()) {
+
+        if (this.gameObject.faction === "player") {
+
+            this.gameObject.scene.engine.gameOver = true;
+
+            console.log("GAME OVER");
+
+        } else {
 
             this.gameObject.scene.remove(
                 this.gameObject
             );
 
         }
+
+    }
 
     }
 

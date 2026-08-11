@@ -5,6 +5,7 @@ export default class Scene {
         this.gameObjects = [];
         this.world = null;
         this.player = null;
+        this.engine = null;
     }
 
     add(gameObject) {

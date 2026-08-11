@@ -13,10 +13,12 @@ export default class Engine {
         this.renderer.camera = this.camera;
         this.gameLoop = new GameLoop(this);
         this.scene = new Scene();
+        this.scene.engine =  this;
 
         Keyboard.initialize();
 
         this.running = false;
+        this.gameOver = false;
 
     }
 
@@ -29,7 +31,12 @@ export default class Engine {
 
     update() {
 
-        
+        if (this.gameOver) {
+
+            return;
+
+        }
+
         this.camera.update();
 
         this.scene.update();
