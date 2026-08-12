@@ -37,9 +37,14 @@ export default class CollectibleComponent extends Component {
 
         }
 
+        player.data.items[this.itemName] =
+            (player.data.items[this.itemName] || 0) + 1;
+
         console.log(
             `Collected ${this.itemName}`
         );
+
+        console.log(player.data.items);
 
         scene.remove(this.gameObject);
 

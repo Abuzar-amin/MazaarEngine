@@ -4,7 +4,7 @@ import Renderer from "../graphics/Renderer.js";
 import Time from "./Time.js";
 import Keyboard from "../input/Keyboard.js";
 import Camera from "../graphics/Camera.js";
-
+import HUD from "../ui/HUD.js";
 export default class Engine {
     constructor() {
 
@@ -15,7 +15,7 @@ export default class Engine {
         this.scene = new Scene();
         this.scene.engine =  this;
         this.sceneFactory = null;
-
+        this.hud = new HUD();
         Keyboard.initialize();
 
         this.running = false;
@@ -56,7 +56,15 @@ export default class Engine {
     }
 
     render() {
-        this.renderer.render();
+
         this.scene.render(this.renderer);
+
+        this.renderer.render();
+
+        this.hud.render(
+            this.renderer,
+            this.scene.player
+        );
+
     }
 }

@@ -18,6 +18,7 @@ export default async function createDemoScene(engine) {
         );
 
     engine.scene.add(player);
+    engine.scene.player = player;
 
     engine.scene.add(
         EnemyPrefab.create(600, 200)

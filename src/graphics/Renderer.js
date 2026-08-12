@@ -69,6 +69,7 @@ flush() {
             this.canvas.width,
             this.canvas.height
         );
+
         this.flush();
 
     }
