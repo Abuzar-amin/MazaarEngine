@@ -1,6 +1,7 @@
 import PrefabManager from "../src/prefabs/PrefabManager.js";
 import World from "../src/world/World.js";
 import WorldLoader from "../src/world/WorldLoader.js";
+import KeyPrefab from "../src/prefabs/KeyPrefab.js";
 import EnemyPrefab from "../src/prefabs/EnemyPrefab.js";
 export default async function createDemoScene(engine) {
 
@@ -29,6 +30,9 @@ export default async function createDemoScene(engine) {
         engine.scene.add(
             EnemyPrefab.create(500, 450)
         );
+    engine.scene.add(
+        KeyPrefab.create(450, 250)
+    );
 
     engine.camera.follow(player);
 

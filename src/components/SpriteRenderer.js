@@ -2,17 +2,23 @@ import Component from "./Component.js";
 import AssetManager from "../../assets/AssetManager.js";
 export default class SpriteRenderer extends Component {
 
-    constructor(imageName) {
+    constructor(
+        imageName,
+        sourceX = 0,
+        sourceY = 0,
+        sourceWidth = 64,
+        sourceHeight = 64
+    ) {
 
         super();
 
         this.imageName = imageName;
 
-        this.sourceX = 0;
-        this.sourceY = 0;
+        this.sourceX = sourceX;
+        this.sourceY = sourceY;
 
-        this.sourceWidth = 64;
-        this.sourceHeight = 64;
+        this.sourceWidth = sourceWidth;
+        this.sourceHeight = sourceHeight;
 
     }
 

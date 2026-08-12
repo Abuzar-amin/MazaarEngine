@@ -6,17 +6,22 @@ async function start() {
 
     await AssetManager.loadImage(
     "grass",
-    "../assets/images/grass.png"
+    "../assets/sprites/grass.png"
     );
 
     await AssetManager.loadImage(
         "player",
-        "../assets/images/player.png"
+        "../assets/sprites/player.png"
     );
 
     await AssetManager.loadImage(
         "stone",
-        "../assets/images/stone.png"
+        "../assets/sprites/stone.png"
+    );
+
+    await AssetManager.loadImage(
+        "key",
+        "../assets/sprites/items/key.png"
     );
 
     const engine = new Engine();
