@@ -10,7 +10,7 @@ export default class ChestPrefab {
         const chest = new Chest();
 
         chest.transform.position.set(x, y);
-        chest.transform.scale.set(0.6, 0.6);
+        chest.transform.scale.set(0.3, 0.3);
         chest.addComponent(
             new SpriteRenderer("chest")
         );

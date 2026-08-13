@@ -1,4 +1,5 @@
 import Entity from "./Entity.js";
+import SpriteRenderer from "../components/SpriteRenderer.js";
 
 export default class Chest extends Entity {
 
@@ -36,8 +37,16 @@ export default class Chest extends Entity {
 
         this.open = true;
 
-        console.log("You found a potion!");
+        const sprite =
+            this.getComponent(SpriteRenderer);
 
+        if (sprite) {
+
+            sprite.imageName = "chest-open";
+
+        }
+
+        console.log("You found a potion!");
     }
 
 }

@@ -30,6 +30,10 @@ async function start() {
         "chest",
         "../assets/sprites/items/chest.png"
     );
+    await AssetManager.loadImage(
+        "chest-open",
+        "../assets/sprites/items/chest-open.png"
+    );
     const engine = new Engine();
     window.engine = engine;
     engine.sceneFactory = createDemoScene;
