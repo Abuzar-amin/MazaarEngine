@@ -1,4 +1,3 @@
-import World from "../world/World.js";
 import PhysicsSystem from "../physics/PhysicsSystem.js";
 export default class Scene {
     constructor() {

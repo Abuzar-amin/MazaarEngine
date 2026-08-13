@@ -44,9 +44,10 @@ export default class Engine {
 
         }
 
-        this.camera.update();
+        
 
         this.scene.update();
+        this.camera.update();
 
     }
     async restart() {

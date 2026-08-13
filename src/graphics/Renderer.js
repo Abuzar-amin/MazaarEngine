@@ -85,49 +85,6 @@ flush() {
     );
 
 }
-    drawImage(image, x, y, width, height) {
 
-    this.context.drawImage(
-        image,
-        x,
-        y,
-        width,
-        height
-    );
-
-}
-    drawSprite(
-    image,
-
-    sx,
-    sy,
-
-    sw,
-    sh,
-
-    dx,
-    dy,
-
-    dw,
-    dh
-) {
-
-    this.context.drawImage(
-        image,
-
-        sx,
-        sy,
-
-        sw,
-        sh,
-
-        dx,
-        dy,
-
-        dw,
-        dh
-    );
-
-}
 
 }

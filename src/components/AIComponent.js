@@ -49,8 +49,6 @@ export default class AIComponent extends Component {
             rigidbody.velocity.y = 0;
 
             CombatSystem.attack(this.gameObject);
-            console.log("Enemy attempting attack");
-
             return;
 
         }

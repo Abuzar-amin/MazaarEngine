@@ -2,7 +2,7 @@ export default class Time {
 
     static deltaTime = 0;
 
-    static lastTime = 0;
+    static lastTime = null;
 
     static elapsedTime = 0;
 
@@ -10,7 +10,16 @@ export default class Time {
 
     static update(currentTime) {
 
-        this.deltaTime = (currentTime - this.lastTime) / 1000;
+        if (this.lastTime === null) {
+
+            this.lastTime = currentTime;
+
+            return;
+
+        }
+
+        this.deltaTime =
+            (currentTime - this.lastTime) / 1000;
 
         this.lastTime = currentTime;
 

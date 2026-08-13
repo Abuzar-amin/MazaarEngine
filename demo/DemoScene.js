@@ -1,5 +1,5 @@
-import PrefabManager from "../src/prefabs/PrefabManager.js";
 import World from "../src/world/World.js";
+import PlayerPrefab from "../src/prefabs/PlayerPrefab.js";
 import WorldLoader from "../src/world/WorldLoader.js";
 import KeyPrefab from "../src/prefabs/KeyPrefab.js";
 import EnemyPrefab from "../src/prefabs/EnemyPrefab.js";
@@ -13,8 +13,7 @@ export default async function createDemoScene(engine) {
         );
 
     const player =
-        PrefabManager.create(
-            "player",
+        PlayerPrefab.create(
             300,
             200
         );

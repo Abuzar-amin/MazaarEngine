@@ -6,11 +6,6 @@ export default class CombatSystem {
     static attack(attacker) {
         const attack =
         attacker.getComponent(AttackComponent);
-        console.log(
-            attacker.name,
-            attacker.faction,
-            attacker.getComponent(AttackComponent)
-        );
 
         if (!attack) return;
 

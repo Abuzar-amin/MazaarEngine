@@ -39,7 +39,6 @@ async function start() {
         "../assets/sprites/exit.png"
     );
     const engine = new Engine();
-    window.engine = engine;
     engine.sceneFactory = createDemoScene;
     await engine.sceneFactory(engine);
     //await createDemoScene(engine);
