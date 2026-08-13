@@ -1,8 +1,6 @@
-import HealthComponent from "../components/HealthComponent.js";
-
 export default class HUD {
 
-    render(renderer, player) {
+    render(renderer, player, gameOver = false) {
 
         if (!player) return;
 
@@ -11,7 +9,7 @@ export default class HUD {
         context.fillStyle = "white";
         context.font = "24px Arial";
 
-        const hp = player.getHealth(); 
+        const hp = player.getHealth();
 
         context.fillText(
             `HP: ${hp}`,
@@ -24,6 +22,32 @@ export default class HUD {
             20,
             75
         );
+
+        if (gameOver) {
+
+            context.fillStyle = "white";
+
+            context.font = "bold 56px Arial";
+
+            context.textAlign = "center";
+
+            context.fillText(
+                "YOU WIN!",
+                renderer.canvas.width / 2,
+                renderer.canvas.height / 2
+            );
+
+            context.font = "24px Arial";
+
+            context.fillText(
+                "Press R to restart",
+                renderer.canvas.width / 2,
+                renderer.canvas.height / 2 + 50
+            );
+
+            context.textAlign = "left";
+
+        }
 
     }
 

@@ -30,9 +30,15 @@ export default class Engine {
         this.gameLoop.start();
     }
 
-    update() {
+    async update() {
 
         if (this.gameOver) {
+
+            if (Keyboard.isKeyPressed("r")) {
+
+                await this.restart();
+
+            }
 
             return;
 
@@ -63,8 +69,10 @@ export default class Engine {
 
         this.hud.render(
             this.renderer,
-            this.scene.player
+            this.scene.player,
+            this.gameOver
         );
 
     }
+
 }

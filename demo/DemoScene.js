@@ -4,6 +4,7 @@ import WorldLoader from "../src/world/WorldLoader.js";
 import KeyPrefab from "../src/prefabs/KeyPrefab.js";
 import EnemyPrefab from "../src/prefabs/EnemyPrefab.js";
 import ChestPrefab from "../src/prefabs/ChestPrefab.js";
+import ExitPrefab from "../src/prefabs/ExitPrefab.js";
 export default async function createDemoScene(engine) {
 
     engine.scene.world =
@@ -37,6 +38,9 @@ export default async function createDemoScene(engine) {
     );
     engine.scene.add(
         ChestPrefab.create(700, 250)
+    );
+    engine.scene.add(
+        ExitPrefab.create(850, 450)
     );
     engine.camera.follow(player);
 

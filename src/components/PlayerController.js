@@ -3,7 +3,7 @@ import Keyboard from "../input/Keyboard.js";
 import Rigidbody from "../physics/Rigidbody.js";
 import CombatSystem from "../systems/CombatSystem.js";
 import Chest from "../entities/Chest.js";
-
+import Exit from "../entities/Exit.js";
 export default class PlayerController extends Component {
 
     constructor(speed = 250) {
@@ -75,6 +75,7 @@ export default class PlayerController extends Component {
             this.interact();
 
         }
+        this.checkExit();
 
     }
 
@@ -102,6 +103,56 @@ export default class PlayerController extends Component {
             if (distance <= this.interactionRange) {
 
                 object.interact(this.gameObject);
+
+                return;
+
+            }
+
+        }
+
+    }
+    checkExit() {
+
+        const scene = this.gameObject.scene;
+
+        for (const object of scene.gameObjects) {
+
+            if (!(object instanceof Exit)) {
+                continue;
+            }
+
+            const player = this.gameObject;
+
+            const playerX =
+                player.transform.position.x;
+
+            const playerY =
+                player.transform.position.y;
+
+            const exitX =
+                object.transform.position.x;
+
+            const exitY =
+                object.transform.position.y;
+
+            const padding =
+                object.interactionPadding;
+
+            const width =
+                object.interactionWidth;
+
+            const height =
+                object.interactionHeight;
+
+            const inside =
+                playerX >= exitX - padding &&
+                playerX <= exitX + width + padding &&
+                playerY >= exitY - padding &&
+                playerY <= exitY + height + padding;
+
+            if (inside) {
+
+                object.activate(player);
 
                 return;
 
