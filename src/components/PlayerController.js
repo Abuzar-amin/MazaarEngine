@@ -2,6 +2,8 @@ import Component from "./Component.js";
 import Keyboard from "../input/Keyboard.js";
 import Rigidbody from "../physics/Rigidbody.js";
 import CombatSystem from "../systems/CombatSystem.js";
+import Chest from "../entities/Chest.js";
+
 export default class PlayerController extends Component {
 
     constructor(speed = 250) {
@@ -11,6 +13,8 @@ export default class PlayerController extends Component {
         this.speed = speed;
 
         this.attackPressed = false;
+
+        this.interactionRange = 80;
 
     }
 
@@ -48,26 +52,62 @@ export default class PlayerController extends Component {
 
         }
 
-    if (Keyboard.isKeyDown(" ")) {
+        if (Keyboard.isKeyDown(" ")) {
 
-        if (!this.attackPressed) {
+            if (!this.attackPressed) {
 
-            CombatSystem.attack(
-                this.gameObject
-            );
+                CombatSystem.attack(
+                    this.gameObject
+                );
 
-            this.attackPressed = true;
+                this.attackPressed = true;
+
+            }
+
+        } else {
+
+            this.attackPressed = false;
 
         }
-        
 
-    } else {
+        if (Keyboard.isKeyPressed("e")) {
 
-        this.attackPressed = false;
+            this.interact();
+
+        }
 
     }
 
-    
+    interact() {
+
+        const scene = this.gameObject.scene;
+
+        for (const object of scene.gameObjects) {
+
+            if (!(object instanceof Chest)) {
+                continue;
+            }
+
+            const dx =
+                object.transform.position.x -
+                this.gameObject.transform.position.x;
+
+            const dy =
+                object.transform.position.y -
+                this.gameObject.transform.position.y;
+
+            const distance =
+                Math.sqrt(dx * dx + dy * dy);
+
+            if (distance <= this.interactionRange) {
+
+                object.interact(this.gameObject);
+
+                return;
+
+            }
+
+        }
 
     }
 
