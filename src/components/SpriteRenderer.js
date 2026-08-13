@@ -6,8 +6,8 @@ export default class SpriteRenderer extends Component {
         imageName,
         sourceX = 0,
         sourceY = 0,
-        sourceWidth = 64,
-        sourceHeight = 64
+        sourceWidth = null,
+        sourceHeight = null
     ) {
 
         super();
@@ -27,6 +27,11 @@ render(renderer) {
     const image = AssetManager.getImage(this.imageName);
 
     if (!image) return;
+    const sourceWidth =
+        this.sourceWidth ?? image.width;
+
+    const sourceHeight =
+        this.sourceHeight ?? image.height;
 
     const transform = this.gameObject.transform;
     const camera = renderer.camera;
@@ -43,14 +48,14 @@ render(renderer) {
         sx: this.sourceX,
         sy: this.sourceY,
 
-        sw: this.sourceWidth,
-        sh: this.sourceHeight,
+        sw: sourceWidth,
+        sh: sourceHeight,
 
         dx: screenX,
         dy: screenY,
 
-        dw: this.sourceWidth * transform.scale.x,
-        dh: this.sourceHeight * transform.scale.y
+        dw: sourceWidth * transform.scale.x,
+        dh: sourceHeight * transform.scale.y
 
     });
 

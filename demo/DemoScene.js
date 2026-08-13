@@ -3,6 +3,7 @@ import World from "../src/world/World.js";
 import WorldLoader from "../src/world/WorldLoader.js";
 import KeyPrefab from "../src/prefabs/KeyPrefab.js";
 import EnemyPrefab from "../src/prefabs/EnemyPrefab.js";
+import ChestPrefab from "../src/prefabs/ChestPrefab.js";
 export default async function createDemoScene(engine) {
 
     engine.scene.world =
@@ -24,17 +25,19 @@ export default async function createDemoScene(engine) {
         EnemyPrefab.create(600, 200)
     );
 
-        engine.scene.add(
-            EnemyPrefab.create(700, 300)
-        );
+    engine.scene.add(
+         EnemyPrefab.create(700, 300)
+    );
 
-        engine.scene.add(
-            EnemyPrefab.create(500, 450)
-        );
+    engine.scene.add(
+        EnemyPrefab.create(500, 450)
+    );
     engine.scene.add(
         KeyPrefab.create(450, 250)
     );
-
+    engine.scene.add(
+        ChestPrefab.create(700, 250)
+    );
     engine.camera.follow(player);
 
     /*engine.scene.add(

@@ -3,7 +3,6 @@ import HealthComponent from "../components/HealthComponent.js";
 import SpriteRenderer from "../components/SpriteRenderer.js";
 import Rigidbody from "../physics/Rigidbody.js";
 import AttackComponent from "../components/AttackComponent.js";
-import Animator from "../components/Animator.js";
 import AIComponent from "../components/AIComponent.js";
 export default class EnemyPrefab {
 
@@ -12,9 +11,9 @@ export default class EnemyPrefab {
         const enemy = new Enemy("Slime");
 
         enemy.transform.position.set(x, y);
-
+        enemy.transform.scale.set(0.6, 0.6);
         enemy.addComponent(
-            new SpriteRenderer("player")
+            new SpriteRenderer("slime")
         );
 
         enemy.addComponent(
@@ -37,9 +36,7 @@ export default class EnemyPrefab {
             )
         );
 
-        enemy.addComponent(
-            new Animator(64, 64, 4, 8)
-        );
+
 
         return enemy;
 

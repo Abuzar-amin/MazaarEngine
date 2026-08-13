@@ -12,7 +12,7 @@ export default class PlayerPrefab {
         const player = new Player();
 
         player.transform.position.set(x, y);
-
+        player.transform.scale.set(0.8, 0.8);
         player.addComponent(
             new SpriteRenderer("player")
         );
@@ -33,9 +33,7 @@ export default class PlayerPrefab {
             new PlayerController()
         );
 
-        player.addComponent(
-            new Animator(64, 64, 4, 8)
-        );
+
 
         return player;
 

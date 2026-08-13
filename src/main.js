@@ -13,7 +13,10 @@ async function start() {
         "player",
         "../assets/sprites/player.png"
     );
-
+        await AssetManager.loadImage(
+            "slime",
+            "../assets/sprites/enemy.png"
+        );
     await AssetManager.loadImage(
         "stone",
         "../assets/sprites/stone.png"
@@ -23,7 +26,10 @@ async function start() {
         "key",
         "../assets/sprites/items/key.png"
     );
-
+    await AssetManager.loadImage(
+        "chest",
+        "../assets/sprites/items/chest.png"
+    );
     const engine = new Engine();
     window.engine = engine;
     engine.sceneFactory = createDemoScene;
