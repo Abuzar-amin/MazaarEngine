@@ -86,7 +86,7 @@ async function start() {
     );
     await AssetManager.loadImage(
         "exit",
-        "../assets/sprites/exit.png"
+        "./assets/sprites/exit.png"
     );
     const engine = new Engine();
     engine.sceneFactory = createDemoScene;
