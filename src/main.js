@@ -31,58 +31,58 @@ async function start() {
 
     await AssetManager.loadImage(
     "grass",
-    "../assets/sprites/grass.png"
+    "./assets/sprites/grass.png"
     );
     await AssetManager.loadImage(
         "dungeon-floor",
-        "../assets/sprites/dungeon_floor.png"
+        "./assets/sprites/dungeon_floor.png"
     );
 
     await AssetManager.loadImage(
         "player",
-        "../assets/sprites/player.png"
+        "./assets/sprites/player.png"
     );
     await AssetManager.loadImage(
         "playerWalk",
-        "../assets/sprites/player-walk.png"
+        "./assets/sprites/player-walk.png"
     );
     await AssetManager.loadImage(
         "slime",
-        "../assets/sprites/enemy.png"
+        "./assets/sprites/enemy.png"
     );
     await AssetManager.loadImage(
         "slimeWalk",
-        "../assets/sprites/slime-walk.png"
+        "./assets/sprites/slime-walk.png"
     );
     await AssetManager.loadImage(
         "potion",
-        "../assets/sprites/items/potion.png"
+        "./assets/sprites/items/potion.png"
     );
     await AssetManager.loadImage(
         "goblin",
-        "../assets/sprites/goblin.png"
+        "./assets/sprites/goblin.png"
     );
 
     await AssetManager.loadImage(
         "minotaur",
-        "../assets/sprites/minotaur.png"
+        "./assets/sprites/minotaur.png"
     );
     await AssetManager.loadImage(
         "stone",
-        "../assets/sprites/stone.png"
+        "./assets/sprites/stone.png"
     );
 
     await AssetManager.loadImage(
         "key",
-        "../assets/sprites/items/key.png"
+        "./assets/sprites/items/key.png"
     );
     await AssetManager.loadImage(
         "chest",
-        "../assets/sprites/items/chest.png"
+        "./assets/sprites/items/chest.png"
     );
     await AssetManager.loadImage(
         "chest-open",
-        "../assets/sprites/items/chest-open.png"
+        "./assets/sprites/items/chest-open.png"
     );
     await AssetManager.loadImage(
         "exit",

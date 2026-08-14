@@ -9,7 +9,7 @@ export default async function createDemoScene(engine) {
 
     engine.scene.world =
         await WorldLoader.load(
-            "../assets/maps/demo.json"
+            "./assets/maps/demo.json"
         );
 
 
