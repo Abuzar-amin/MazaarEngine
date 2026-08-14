@@ -8,8 +8,13 @@ export default class Renderer {
 
         this.context = this.canvas.getContext("2d");
 
-        this.canvas.width = 1280;
-        this.canvas.height = 720;
+        this.resize();
+
+        window.addEventListener("resize", () => {
+
+            this.resize();
+
+        });
 
         this.camera = null;
 
@@ -71,6 +76,14 @@ flush() {
         );
 
         this.flush();
+
+
+    }
+
+    resize() {
+
+        this.canvas.width = window.innerWidth;
+        this.canvas.height = window.innerHeight;
 
     }
     drawRectangle(x, y, width, height, color) {

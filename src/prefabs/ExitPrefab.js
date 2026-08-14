@@ -11,11 +11,14 @@ export default class ExitPrefab {
 
         exit.transform.scale.set(0.65, 0.65);
 
-        exit.interactionWidth = 146 * 0.65;
-        exit.interactionHeight = 197 * 0.65;
-        exit.interactionPadding = 60;
         exit.addComponent(
-            new SpriteRenderer("exit")
+            new SpriteRenderer(
+                "exit",
+                0,
+                0,
+                146,
+                197
+            )
         );
 
         return exit;

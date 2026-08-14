@@ -21,6 +21,13 @@ export default class Camera {
 
     }
 
+    resize(width, height) {
+
+        this.width = width;
+        this.height = height;
+
+    }
+
     update() {
 
         if (!this.target) return;

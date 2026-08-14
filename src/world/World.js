@@ -26,7 +26,7 @@ export default class World {
 
         // Register tiles
         this.tileSet.add(
-            new Tile(0, "grass", false)
+            new Tile(0, "dungeon-floor", false)
         );
 
         this.tileSet.add(

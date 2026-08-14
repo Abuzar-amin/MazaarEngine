@@ -1,6 +1,7 @@
 import Component from "./Component.js";
 import Rigidbody from "../physics/Rigidbody.js";
 import CombatSystem from "../systems/CombatSystem.js";
+import Animator from "./Animator.js";
 export default class AIComponent extends Component {
 
     constructor(
@@ -27,6 +28,8 @@ export default class AIComponent extends Component {
 
         const rigidbody =
             this.gameObject.getComponent(Rigidbody);
+        const animator =
+            this.gameObject.getComponent(Animator);
 
         if (!rigidbody) return;
 
@@ -48,7 +51,12 @@ export default class AIComponent extends Component {
             rigidbody.velocity.x = 0;
             rigidbody.velocity.y = 0;
 
+            if (animator) {
+                animator.stop();
+            }
+
             CombatSystem.attack(this.gameObject);
+
             return;
 
         }
@@ -61,6 +69,10 @@ export default class AIComponent extends Component {
             distance === 0
         ) {
 
+            if (animator) {
+                animator.stop();
+            }
+
             return;
 
         }
@@ -70,6 +82,10 @@ export default class AIComponent extends Component {
 
         rigidbody.velocity.y =
             (dy / distance) * this.speed;
+
+        if (animator) {
+            animator.play();
+        }
 
     }
 

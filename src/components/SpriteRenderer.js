@@ -7,7 +7,9 @@ export default class SpriteRenderer extends Component {
         sourceX = 0,
         sourceY = 0,
         sourceWidth = null,
-        sourceHeight = null
+        sourceHeight = null,
+        offsetX = 0,
+        offsetY = 0
     ) {
 
         super();
@@ -19,6 +21,9 @@ export default class SpriteRenderer extends Component {
 
         this.sourceWidth = sourceWidth;
         this.sourceHeight = sourceHeight;
+
+        this.offsetX = offsetX;
+        this.offsetY = offsetY;
 
     }
 
@@ -36,8 +41,15 @@ render(renderer) {
     const transform = this.gameObject.transform;
     const camera = renderer.camera;
 
-    const screenX = transform.position.x - camera.position.x;
-    const screenY = transform.position.y - camera.position.y;
+    const screenX =
+        transform.position.x -
+        camera.position.x +
+        this.offsetX;
+
+    const screenY =
+        transform.position.y -
+        camera.position.y +
+        this.offsetY;
 
     renderer.renderQueue.submit({
 

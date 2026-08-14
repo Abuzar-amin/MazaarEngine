@@ -4,6 +4,8 @@ import Rigidbody from "../physics/Rigidbody.js";
 import CombatSystem from "../systems/CombatSystem.js";
 import Chest from "../entities/Chest.js";
 import Exit from "../entities/Exit.js";
+import SpriteRenderer from "./SpriteRenderer.js";
+import Animator from "./Animator.js";
 export default class PlayerController extends Component {
 
     constructor(speed = 250) {
@@ -22,6 +24,8 @@ export default class PlayerController extends Component {
 
         const rigidbody =
             this.gameObject.getComponent(Rigidbody);
+        const animator =
+            this.gameObject.getComponent(Animator);
 
         if (!rigidbody) return;
 
@@ -51,6 +55,19 @@ export default class PlayerController extends Component {
             rigidbody.velocity.y = this.speed;
 
         }
+            const moving =
+        rigidbody.velocity.x !== 0 ||
+        rigidbody.velocity.y !== 0;
+
+    if (animator) {
+
+        if (moving) {
+            animator.play();
+        } else {
+            animator.stop();
+        }
+
+    }
 
         if (Keyboard.isKeyDown(" ")) {
 
@@ -115,19 +132,45 @@ export default class PlayerController extends Component {
 
         const scene = this.gameObject.scene;
 
+        const player = this.gameObject;
+
+        const playerX =
+            player.transform.position.x;
+
+        const playerY =
+            player.transform.position.y;
+
+        const playerRigidbody =
+            player.getComponent(Rigidbody);
+
+        const playerWidth =
+            playerRigidbody
+                ? playerRigidbody.width
+                : 0;
+
+        const playerHeight =
+            playerRigidbody
+                ? playerRigidbody.height
+                : 0;
+
+        const playerCenterX =
+            playerX + playerWidth / 2;
+
+        const playerCenterY =
+            playerY + playerHeight / 2;
+
         for (const object of scene.gameObjects) {
 
             if (!(object instanceof Exit)) {
                 continue;
             }
 
-            const player = this.gameObject;
+            const sprite =
+                object.getComponent(SpriteRenderer);
 
-            const playerX =
-                player.transform.position.x;
-
-            const playerY =
-                player.transform.position.y;
+            if (!sprite) {
+                continue;
+            }
 
             const exitX =
                 object.transform.position.x;
@@ -135,20 +178,25 @@ export default class PlayerController extends Component {
             const exitY =
                 object.transform.position.y;
 
-            const padding =
-                object.interactionPadding;
+            const exitWidth =
+                sprite.sourceWidth *
+                object.transform.scale.x;
 
-            const width =
-                object.interactionWidth;
+            const exitHeight =
+                sprite.sourceHeight *
+                object.transform.scale.y;
 
-            const height =
-                object.interactionHeight;
+            const exitRight =
+                exitX + exitWidth;
+
+            const exitBottom =
+                exitY + exitHeight;
 
             const inside =
-                playerX >= exitX - padding &&
-                playerX <= exitX + width + padding &&
-                playerY >= exitY - padding &&
-                playerY <= exitY + height + padding;
+                playerCenterX >= exitX &&
+                playerCenterX <= exitRight &&
+                playerCenterY >= exitY &&
+                playerCenterY <= exitBottom;
 
             if (inside) {
 

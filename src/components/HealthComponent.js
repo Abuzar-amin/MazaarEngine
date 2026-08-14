@@ -22,7 +22,7 @@ export default class HealthComponent extends Component {
 
         if (this.gameObject.faction === "player") {
 
-            this.gameObject.scene.engine.gameOver = true;
+            this.gameObject.scene.engine.gameState = "defeat";
 
             console.log("GAME OVER");
 

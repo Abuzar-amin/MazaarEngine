@@ -16,7 +16,7 @@ export default class Exit extends Entity {
 
         this.completed = true;
 
-        this.scene.engine.gameOver = true;
+        this.scene.engine.gameState = "victory";
 
         console.log("You Win!");
 

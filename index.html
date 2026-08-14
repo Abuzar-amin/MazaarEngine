@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>MazaarEngine</title>
 
     <link rel="stylesheet" href="style.css">
@@ -12,5 +14,120 @@
 
     <script type="module" src="./src/main.js"></script>
 
+
+    <!-- ========================= -->
+    <!-- FIRST-TIME INSTRUCTIONS -->
+    <!-- ========================= -->
+
+    <div id="instructions-overlay" class="instructions-overlay">
+
+        <div class="instructions-box">
+
+            <h1>MAZAAR ENGINE</h1>
+
+            <p class="subtitle">
+                Survive the dungeon and reach the portal.
+            </p>
+
+            <div class="controls">
+
+                <div class="control-row">
+                    <span class="keys">W A S D</span>
+                    <span>Move</span>
+                </div>
+
+                <div class="control-row">
+                    <span class="keys">SPACE</span>
+                    <span>Attack</span>
+                </div>
+
+                <div class="control-row">
+                    <span class="keys">E</span>
+                    <span>Interact with chests</span>
+                </div>
+
+            </div>
+
+            <div class="objective">
+
+                <strong>Your objective</strong>
+
+                <p>
+                    Defeat the enemies, collect the key,
+                    open the chest, defeat the Minotaur,
+                    and reach the portal.
+                </p>
+
+            </div>
+
+            <button id="instructions-button">
+                GOT IT
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- ========================= -->
+    <!-- VICTORY BUTTONS -->
+    <!-- ========================= -->
+
+    <div id="victory-buttons" class="victory-buttons">
+
+        <button id="hire-button">
+            HIRE ME
+        </button>
+
+        <button id="source-button">
+            VIEW SOURCE
+        </button>
+
+    </div>
+
+
+    <script>
+
+        const instructions =
+            document.getElementById(
+                "instructions-overlay"
+            );
+
+        const instructionsButton =
+            document.getElementById(
+                "instructions-button"
+            );
+
+
+        // Show instructions only on first visit
+
+        if (
+            localStorage.getItem(
+                "mazaar-instructions-seen"
+            )
+        ) {
+
+            instructions.style.display = "none";
+
+        }
+
+
+        instructionsButton.addEventListener(
+            "click",
+            () => {
+
+                instructions.style.display = "none";
+
+                localStorage.setItem(
+                    "mazaar-instructions-seen",
+                    "true"
+                );
+
+            }
+        );
+
+    </script>
+
 </body>
+
 </html>

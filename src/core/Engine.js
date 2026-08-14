@@ -9,8 +9,20 @@ export default class Engine {
     constructor() {
 
         this.renderer = new Renderer();
-        this.camera = new Camera();
+
+        this.camera = new Camera(
+            this.renderer.canvas.width,
+            this.renderer.canvas.height
+        );
         this.renderer.camera = this.camera;
+        window.addEventListener("resize", () => {
+
+            this.camera.resize(
+                window.innerWidth,
+                window.innerHeight
+            );
+
+        });
         this.gameLoop = new GameLoop(this);
         this.scene = new Scene();
         this.scene.engine =  this;
@@ -19,7 +31,8 @@ export default class Engine {
         Keyboard.initialize();
 
         this.running = false;
-        this.gameOver = false;
+
+        this.gameState = "playing";
 
     }
 
@@ -30,29 +43,27 @@ export default class Engine {
         this.gameLoop.start();
     }
 
-    async update() {
+        async update() {
 
-        if (this.gameOver) {
+            if (this.gameState !== "playing") {
 
-            if (Keyboard.isKeyPressed("r")) {
+                if (Keyboard.isKeyPressed("r")) {
 
-                await this.restart();
+                    await this.restart();
+
+                }
+
+                return;
 
             }
 
-            return;
+            this.scene.update();
+            this.camera.update();
 
         }
-
-        
-
-        this.scene.update();
-        this.camera.update();
-
-    }
     async restart() {
 
-        this.gameOver = false;
+        this.gameState = "playing";
 
         this.scene = new Scene();
 
@@ -71,8 +82,19 @@ export default class Engine {
         this.hud.render(
             this.renderer,
             this.scene.player,
-            this.gameOver
+            this.gameState
         );
+    const victoryButtons =
+        document.getElementById("victory-buttons");
+
+    if (victoryButtons) {
+
+        victoryButtons.style.display =
+            this.gameState === "victory"
+                ? "flex"
+                : "none";
+
+    }
 
     }
 

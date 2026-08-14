@@ -22,10 +22,18 @@ export default class WorldLoader {
 
             for (let x = 0; x < data.width; x++) {
 
+                const tileId = data.tiles[y][x];
+
                 world.tileMap.setTile(
                     x,
                     y,
-                    data.tiles[y][x]
+                    tileId
+                );
+
+                world.getLayer("Ground").setTile(
+                    x,
+                    y,
+                    tileId
                 );
 
             }
